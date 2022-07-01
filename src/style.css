@@ -9,6 +9,16 @@ p {
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-.bg-navbar {
+.bg-color {
   background-color: #F5DB13 !important;
+}
+
+.area-search {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
 }

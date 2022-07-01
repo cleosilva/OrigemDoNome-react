@@ -3,7 +3,7 @@ import { BsLinkedin, BsGithub } from 'react-icons/bs';
 
 const NavBar = () => {
   return (
-    <nav class="navbar navbar-dark bg-dark bg-navbar">
+    <nav class="navbar navbar-dark bg-dark bg-color">
       <a class="navbar-brand" href="/">
         <h3 className="mx-4" id="logo">
           Origin<span>OfName</span>
