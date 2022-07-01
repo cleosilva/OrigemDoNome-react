@@ -36,7 +36,7 @@ export default function App() {
       // variáveis dos países com maior probabilidade
       const nameOfCountry = responseApi.data.country[0].country_id;
       const probability = responseApi.data.country[0].probability;
-      const flag = `https://countryflagsapi.com/png/${nameCountry.toLowerCase()}`;
+      const flag = `https://countryflagsapi.com/png/${nameOfCountry.toLowerCase()}`;
       const percent = probability.toFixed(2) * 100;
 
       setPercentCountry(percent);
@@ -92,7 +92,7 @@ export default function App() {
               </div>
               <p className="card-text text-center ">A probabilidade é: <span className='fw-bold'>{probabilityCountry.toFixed(4)}</span> ou <span className='fw-bold'>{percentCountry.toFixed(0)}% </span></p>
               <div className=' d-flex justify-content-center'>
-                <button className="btn btn-success px-4 py-2 text-uppercase" data-bs-toggle="tooltip" data-bs-placement="top" title="3 países mais prováveis"
+                <button className="btn bg-color px-4 py-2 text-uppercase" data-bs-toggle="tooltip" data-bs-placement="top" title="3 países mais prováveis"
                   onClick={openCountries}>Principais países <BsArrowDown size={20} color="FFF"/></button>
               </div>
             </div>
