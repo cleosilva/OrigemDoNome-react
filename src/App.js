@@ -1,5 +1,5 @@
 import React from "react";
-import {BsSearch, BsHeart, BsArrowDown} from 'react-icons/bs'
+import {BsSearch, BsHeart, BsHandIndex} from 'react-icons/bs'
 import api from './services/api';
 import "./style.css";
 
@@ -83,10 +83,12 @@ export default function App() {
         </button>
       </div>
         <p className="footer text-muted">Created with <BsHeart/> by Cléo Silva</p>
+      
+      <div class="card-group">
       {Object.keys(data).length > 0 && (
       <main className='main m-4'>
           <div className="card shadow-lg">
-            <h5 className="card-header text-center bg-header">{data.name}</h5>
+            <h5 className="card-header text-center bg-header">Nome: {data.name}</h5>
             <div className="card-body p-4">
               <h5 className="card-title">País com maior probablidade de origem: <p className='text-center mt-2 mb-0 text-uppercase text-success'>{nameCountry}</p></h5>
               <div className='mb-4 d-flex justify-content-center'>
@@ -94,15 +96,15 @@ export default function App() {
               </div>
               <p className="card-text text-center ">A probabilidade é: <span className='fw-bold'>{probabilityCountry.toFixed(4)}</span> ou <span className='fw-bold'>{percentCountry.toFixed(0)}% </span></p>
               <div className=' d-flex justify-content-center'>
-                <button className="btn bg-color px-4 py-2 text-uppercase" data-bs-toggle="tooltip" data-bs-placement="top" title="3 países mais prováveis"
-                  onClick={openCountries}>Principais países <BsArrowDown size={20} color="FFF"/></button>
+                <button className="btn bg-color px-4 py-2 text-uppercase text-light" data-bs-toggle="tooltip" data-bs-placement="top" title="3 países mais prováveis"
+                  onClick={openCountries}><BsHandIndex size={20} color="FFF"/> Outros países</button>
               </div>
             </div>
           </div>
         </main>
     )}
     {Object.keys(valid).length > 0 && ( //verifica se há conteúdo no objeto para ser mostrado
-        <div className="card shadow-lg mb-5">
+        <div className="card shadow-lg m-4">
           <h5 className="card-header text-uppercase bg-header">Principais Países:</h5>
           <div className="card-body countries gap-5 d-flex">
             <span className='text-center d-block'>
@@ -118,6 +120,7 @@ export default function App() {
           </div>
         </div>
       )}
+    </div>
     </div>
   );
 }
