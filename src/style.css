@@ -22,3 +22,7 @@ p {
   flex-direction: column;
 
 }
+
+.containerInput {
+  width: 20rem;
+}
