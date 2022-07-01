@@ -3,13 +3,13 @@ import { BsLinkedin, BsGithub } from 'react-icons/bs';
 
 const NavBar = () => {
   return (
-    <nav class="navbar navbar-dark bg-dark bg-color">
-      <a class="navbar-brand" href="/">
+    <nav className="navbar navbar-dark bg-dark bg-color">
+      <a className="navbar-brand" href="/">
         <h3 className="mx-4" id="logo">
           Origin<span>OfName</span>
         </h3>
       </a>
-      <div class="navbar-brand icons">
+      <div className="navbar-brand icons">
         <a
           className="mx-2"
           href="https://github.com/cleosilva"

@@ -1,5 +1,6 @@
 import React from "react";
 import {BsSearch} from 'react-icons/bs'
+import api from './services/api';
 import "./style.css";
 
 export default function App() {
@@ -14,12 +15,13 @@ export default function App() {
   const [nameCountries, setNameCountries] = React.useState([]);
 
   React.useEffect(() => {
-    fetch('./contries.json', {
+    fetch('./countries.json', {
       headers: {
         Accept: 'application/json'
       }
-    }).then((response) => response.json())
-      .then((response) => setCountries(json))
+    }).then((res) => res.json())
+      .then(res => setCountries(res))
+      
   });
 
   // Função para buscar os nomes
@@ -32,8 +34,8 @@ export default function App() {
       const responseApi = await api.get(`?name=${input}`);
       setData(responseApi.data)
       // variáveis dos países com maior probabilidade
-      const name = responseApi.data.country[0].country_id;
-      const probability = responseApi.data.country[0].probabilityCountry;
+      const nameOfCountry = responseApi.data.country[0].country_id;
+      const probability = responseApi.data.country[0].probability;
       const flag = `https://countryflagsapi.com/png/${nameCountry.toLowerCase()}`;
       const percent = probability.toFixed(2) * 100;
 
@@ -41,15 +43,15 @@ export default function App() {
       setFlagCountry(flag);
       setProbabilityCountry(probability)
 
-      for (let country of countries.countries) {
-        if (name === country.code) {
+      for (let country of countries) {
+        if (nameOfCountry === country.code) {
           setNameCountry(country.name);
         }
       }
       setInput(''); // limpa o input
       
-    }catch(err) {
-      console.log(err)
+    }catch(e) {
+      console.log(e)
       setInput('');
     }
     setValid(0);
@@ -59,9 +61,9 @@ export default function App() {
     setValid(data);
     const vetorCountries = [];
     for (let country of data.country) {
-      let nameCountry = country.country_id
+      let nameOfCountry = country.country_id
       for (let country of countries.countries) {
-        if (nameCountry === country.code) {
+        if (nameOfCountry === country.code) {
           vetorCountries.push(country.name);
           setNameCountries(vetorCountries);
         }
