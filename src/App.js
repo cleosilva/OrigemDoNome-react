@@ -1,5 +1,5 @@
 import React from "react";
-import {BsSearch, BsHeart, BsHandIndex} from 'react-icons/bs'
+import {BsSearch, BsHeart, BsArrowRightSquare} from 'react-icons/bs'
 import api from './services/api';
 import "./style.css";
 
@@ -97,7 +97,7 @@ export default function App() {
               <p className="card-text text-center ">A probabilidade é: <span className='fw-bold'>{probabilityCountry.toFixed(4)}</span> ou <span className='fw-bold'>{percentCountry.toFixed(0)}% </span></p>
               <div className=' d-flex justify-content-center'>
                 <button className="btn bg-color px-4 py-2 text-uppercase text-light" data-bs-toggle="tooltip" data-bs-placement="top" title="3 países mais prováveis"
-                  onClick={openCountries}><BsHandIndex size={20} color="FFF"/> Outros países</button>
+                  onClick={openCountries}>Outros países <BsArrowRightSquare size={20} color="FFF"/></button>
               </div>
             </div>
           </div>
