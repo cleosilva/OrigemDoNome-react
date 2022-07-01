@@ -1,5 +1,5 @@
 import React from "react";
-import {BsSearch} from 'react-icons/bs'
+import {BsSearch, BsHeart, BsArrowDown} from 'react-icons/bs'
 import api from './services/api';
 import "./style.css";
 
@@ -43,7 +43,7 @@ export default function App() {
       setFlagCountry(flag);
       setProbabilityCountry(probability)
 
-      for (let country of countries) {
+      for (let country of countries.countries) {
         if (nameOfCountry === country.code) {
           setNameCountry(country.name);
         }
@@ -78,9 +78,10 @@ export default function App() {
         <input type="text" className="form-control" placeholder="Digite seu nome" value={input} onChange={(event) => setInput(event.target.value)}   />
         <button type="button" className="buttonSearch btn btn-light bg-color" data-bs-toggle="tooltip" data-bs-placement="top" title="Pesquisar" onClick={handleClick}>
             <BsSearch size={25} color="FFF" />
-          </button>
+        </button>
       </div>
-      {Object.keys(data) > 0 && (
+        <p className="footer text-muted">Created with <BsHeart/> by Cléo Silva</p>
+      {Object.keys(data).length > 0 && (
       <main className='main m-4'>
           <div className="card shadow-lg">
             <h5 className="card-header text-center">{data.name}</h5>
