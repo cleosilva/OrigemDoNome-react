@@ -36,3 +36,8 @@ button:focus {
   border-color: #F5DB13;
   box-shadow: 0 0 0 0.2rem rgba(242, 203, 1, 0.25);
 }
+
+.bg-header {
+  background-color: #D93E30;
+  color: #fff;
+}

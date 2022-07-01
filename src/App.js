@@ -13,6 +13,7 @@ export default function App() {
   const [countries, setCountries] = React.useState([]);
   const [valid, setValid] = React.useState({});
   const [nameCountries, setNameCountries] = React.useState([]);
+  const inputElement = React.useRef();
 
   React.useEffect(() => {
     fetch('./countries.json', {
@@ -50,13 +51,13 @@ export default function App() {
       }
       setInput(''); // limpa o input
       
-    }catch(e) {
-      console.log(e)
+    }catch(err) {
+      console.log('err',err)
       setInput('');
     }
     setValid(0);
   }
-
+  
   async function openCountries() {
     setValid(data);
     const vetorCountries = [];
@@ -69,13 +70,14 @@ export default function App() {
         }
       }
     }
+    inputElement.current.focus();
   } 
   
   return (
     <div className="area-search">
       <h1 className="title mt-4">Origin of Name</h1>
       <div className="input-group mb-3 containerInput">
-        <input type="text" className="form-control" placeholder="Digite seu nome" value={input} onChange={(event) => setInput(event.target.value)}   />
+        <input ref={inputElement} type="text" className="form-control" placeholder="Digite seu nome" value={input} onChange={(event) => setInput(event.target.value)}   />
         <button type="button" className="buttonSearch btn btn-light bg-color" data-bs-toggle="tooltip" data-bs-placement="top" title="Pesquisar" onClick={handleClick}>
             <BsSearch size={25} color="FFF" />
         </button>
@@ -84,7 +86,7 @@ export default function App() {
       {Object.keys(data).length > 0 && (
       <main className='main m-4'>
           <div className="card shadow-lg">
-            <h5 className="card-header text-center">{data.name}</h5>
+            <h5 className="card-header text-center bg-header">{data.name}</h5>
             <div className="card-body p-4">
               <h5 className="card-title">País com maior probablidade de origem: <p className='text-center mt-2 mb-0 text-uppercase text-success'>{nameCountry}</p></h5>
               <div className='mb-4 d-flex justify-content-center'>
