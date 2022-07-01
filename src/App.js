@@ -103,7 +103,7 @@ export default function App() {
     )}
     {Object.keys(valid).length > 0 && ( //verifica se há conteúdo no objeto para ser mostrado
         <div className="card shadow-lg mb-5">
-          <h5 className="card-header text-uppercase">Principais Países:</h5>
+          <h5 className="card-header text-uppercase bg-header">Principais Países:</h5>
           <div className="card-body countries gap-5 d-flex">
             <span className='text-center d-block'>
               {nameCountries.map(country => (
