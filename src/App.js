@@ -107,7 +107,7 @@ export default function App() {
           <div className="card-body countries gap-5 d-flex">
             <span className='text-center d-block'>
               {nameCountries.map(country => (
-                <p className='d-flex text-uppercase '>{country}</p>
+                <p className='d-flex text-uppercase' key={country}>{country}</p>
               ))}
             </span>
             <span className='text-center d-block'>
