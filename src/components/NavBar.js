@@ -1,5 +1,5 @@
 import React from 'react';
-import { BsLinkedin, BsGithub } from 'react-icons/bs';
+import { BsLinkedin, BsGithub, BsWhatsapp } from 'react-icons/bs';
 
 const NavBar = () => {
   return (
@@ -26,6 +26,14 @@ const NavBar = () => {
           rel="noreferrer"
         >
           <BsLinkedin size={25} color="FFF" />
+        </a>
+        <a
+          className="mx-2"
+          href="https://api.whatsapp.com/send?phone=5512981420014&text=Entre%20em%20contato%20Cleo"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <BsWhatsapp size={25} color="FFF" />
         </a>
       </div>
     </nav>
