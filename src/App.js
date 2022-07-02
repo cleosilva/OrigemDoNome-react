@@ -22,7 +22,7 @@ export default function App() {
       }
     }).then((res) => res.json())
       .then(res => setCountries(res))
-      
+
   });
 
   // Função para buscar os nomes
@@ -50,15 +50,15 @@ export default function App() {
         }
       }
       setInput(''); // limpa o input
-      
-    }catch(err) {
-      console.log('err',err)
+
+    } catch (err) {
+      console.log('err', err)
       setInput('');
     }
     setValid(0);
   }
-  
-  async function openCountries() {
+
+  async function listCountries() {
     setValid(data);
     const vetorCountries = [];
     for (let country of data.country) {
@@ -71,56 +71,57 @@ export default function App() {
       }
     }
     inputElement.current.focus();
-  } 
-  
+  }
+
   return (
     <div className="area-search">
-      <h1 className="title mt-4">Origin of Name</h1>
-      <div className="input-group mb-3 containerInput">
-        <input ref={inputElement} type="text" className="form-control" placeholder="Digite seu nome" value={input} onChange={(event) => setInput(event.target.value)}   />
-        <button type="button" className="bg-color button1" data-bs-toggle="tooltip" data-bs-placement="top" title="Pesquisar" onClick={handleClick}>
-            <BsSearch size={25} color="FFF" />
+      <h1 className="title mt-5 mb-3">Origin of Name</h1>
+      <div className="input-group containerInput">
+        <input ref={inputElement} type="text" className="form-control" placeholder="Digite seu nome" value={input} onChange={(event) => setInput(event.target.value)} />
+        <button type="button" className="bg-color buttonSearch" data-bs-toggle="tooltip" data-bs-placement="top" title="Pesquisar" onClick={handleClick}>
+          <BsSearch size={25} color="FFF" />
         </button>
       </div>
-        <p className="footer text-muted">Created with <BsHeart/> by Cléo Silva</p>
-      
+      <p className="footer text-muted small">Created with <BsHeart /> by Cléo Silva</p>
+
       <div class="card-group">
-      {Object.keys(data).length > 0 && (
-      <main className='main m-4'>
-          <div className="card shadow-lg bg-card">
-            <h5 className="card-header text-center bg-header">Nome: {data.name}</h5>
-            <div className="card-body p-4">
-              <h5 className="card-title">País com maior probablidade de origem: <p className='text-center mt-2 mb-0 text-uppercase text-success'>{nameCountry}</p></h5>
-              <div className='mb-4 d-flex justify-content-center'>
-                <img src={`${flagCountry}`} width="35" alt="description of image" />
-              </div>
-              <p className="card-text text-center ">A probabilidade é de <span className='fw-bold'>{percentCountry.toFixed(0)}% </span></p>
-              <div className=' d-flex justify-content-center'>
-                <button className="btn-fancy" data-bs-toggle="tooltip" data-bs-placement="top" title="3 países mais prováveis"
-                  onClick={openCountries}><span>Outros países</span></button>
+        {Object.keys(data).length > 0 && ( // Verifica se há dados para serem mostrados
+          <div className='main m-4'>
+            <div className="card shadow-lg bg-card">
+              <h5 className="card-header text-center bg-header">Nome: {data.name}</h5>
+              <div className="card-body p-4">
+                <h5 className="card-title">País com maior probablidade de origem: <p className='text-center mt-2 mb-0 text-uppercase text-success'>{nameCountry}</p></h5>
+                <div className='mb-4 d-flex justify-content-center'>
+                  <img src={`${flagCountry}`} width="35" alt="description of image" />
+                </div>
+                <p className="card-text text-center ">A probabilidade é de <span className='fw-bold'>{percentCountry.toFixed(0)}% </span></p>
+                <div className=' d-flex justify-content-center'>
+                  <button className="btn-fancy" data-bs-toggle="tooltip" data-bs-placement="top" title="3 países mais prováveis"
+                    onClick={listCountries}><span>Outros países</span></button>
+                </div>
               </div>
             </div>
           </div>
-        </main>
-    )}
-    {Object.keys(valid).length > 0 && ( //verifica se há conteúdo no objeto para ser mostrado
-        <div className="card shadow-lg m-4 bg-card">
-          <h5 className="card-header text-uppercase bg-header">Principais Países:</h5>
-          <div className="card-body countries gap-5 d-flex">
-            <span className='text-center d-block'>
-              {nameCountries.map(country => (
-                <p className='d-flex text-uppercase' key={country}>{country}</p>
-              ))}
-            </span>
-            <span className='text-center d-block'>
-              {data.country.map(e => (
-                <p className="card-text mx-auto">{(e.probability.toFixed(2) * 100).toFixed(0)}% </p>
-              ))}
-            </span>
+        )}
+        {Object.keys(valid).length > 0 && (
+          <div className="card shadow-lg m-4 bg-card">
+            <h5 className="card-header text-uppercase bg-header">Principais Países:</h5>
+            <div className="card-body countries gap-5 d-flex">
+              <span className='text-center d-block'>
+                {nameCountries.map(country => (
+                  <p className='d-flex text-uppercase' key={country}>{country}</p>
+                  ))}
+              </span>
+              <span className='text-center d-block'>
+                {data.country.map(e => (
+                  <p className="card-text mx-auto">{(e.probability.toFixed(2) * 100).toFixed(0)}% </p>
+                  ))}
+              </span>
+            </div>
           </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
     </div>
   );
 }
+
