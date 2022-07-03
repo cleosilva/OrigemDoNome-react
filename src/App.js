@@ -90,14 +90,14 @@ export default function App() {
             <div className="card shadow-lg bg-card">
               <h5 className="card-header text-center bg-header">Nome: {data.name}</h5>
               <div className="card-body p-4">
-                <h5 className="card-title">País com maior probablidade de origem: <p className='text-center mt-2 mb-0 text-uppercase text-success'>{nameCountry}</p></h5>
+                <h5 className="card-title">Maior probablidade de origem: <p className='text-center mt-2 mb-0 text-uppercase text-success'>{nameCountry}</p></h5>
                 <div className='mb-4 d-flex justify-content-center'>
-                  <img src={`${flagCountry}`} width="35" alt="description of image" />
+                  <img src={`${flagCountry}`} width="35" alt="flag" />
                 </div>
                 <p className="card-text text-center ">A probabilidade é de <span className='fw-bold'>{percentCountry.toFixed(0)}% </span></p>
                 <div className=' d-flex justify-content-center'>
                   <button className="btn-fancy" data-bs-toggle="tooltip" data-bs-placement="top" title="3 países mais prováveis"
-                    onClick={listCountries}><span>Outros países</span></button>
+                    onClick={listCountries}><span>Outros países de origem</span></button>
                 </div>
               </div>
             </div>
@@ -105,11 +105,11 @@ export default function App() {
         )}
         {Object.keys(valid).length > 0 && (
           <div className="card shadow-lg m-4 bg-card">
-            <h5 className="card-header text-uppercase bg-header">Principais Países:</h5>
+            <h5 className="card-header text-uppercase bg-header">Países de origem:</h5>
             <div className="card-body countries gap-5 d-flex">
               <span className='text-center d-block'>
-                {nameCountries.map(country => (
-                  <p className='d-flex text-uppercase' key={country}>{country}</p>
+                {nameCountries.map((country, key) => (
+                  <p className='d-flex text-uppercase' key={key}><img src={`https://countryflagsapi.com/png/${country.toLowerCase()}`} className="m-1" width="35" alt="flag"/> {country}</p>
                   ))}
               </span>
               <span className='text-center d-block'>
