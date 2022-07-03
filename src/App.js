@@ -1,9 +1,10 @@
 import React from "react";
-import {BsSearch, BsHeart, BsArrowRightSquare} from 'react-icons/bs'
+import { BsSearch, BsHeart } from 'react-icons/bs'
 import api from './services/api';
 import "./style.css";
 
 export default function App() {
+  // encapsulamento de variáveis
   const [input, setInput] = React.useState('');
   const [data, setData] = React.useState({});
   const [nameCountry, setNameCountry] = React.useState('');
@@ -25,7 +26,7 @@ export default function App() {
 
   });
 
-  // Função para buscar os nomes
+  // função para buscar o nome
   async function handleClick() {
     if (input === '') {
       alert('Informe um nome');
@@ -58,6 +59,7 @@ export default function App() {
     setValid(0);
   }
 
+  // função que lista os três países com maior probabilidade
   async function listCountries() {
     setValid(data);
     const vetorCountries = [];
@@ -70,7 +72,7 @@ export default function App() {
         }
       }
     }
-    inputElement.current.focus();
+    inputElement.current.focus(); // mantém o foco no input
   }
 
   return (
@@ -109,13 +111,13 @@ export default function App() {
             <div className="card-body countries gap-5 d-flex">
               <span className='text-center d-block'>
                 {nameCountries.map((country, key) => (
-                  <p className='d-flex text-uppercase' key={key}><img src={`https://countryflagsapi.com/png/${country.toLowerCase()}`} className="m-1" width="35" alt="flag"/> {country}</p>
-                  ))}
+                  <p className='d-flex text-uppercase' key={key}>{country}</p>
+                ))}
               </span>
               <span className='text-center d-block'>
                 {data.country.map(e => (
                   <p className="card-text mx-auto">{(e.probability.toFixed(2) * 100).toFixed(0)}% </p>
-                  ))}
+                ))}
               </span>
             </div>
           </div>
