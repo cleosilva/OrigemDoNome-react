@@ -14,6 +14,7 @@ export default function App() {
   const [countries, setCountries] = React.useState([]);
   const [valid, setValid] = React.useState({});
   const [nameCountries, setNameCountries] = React.useState([]);
+
   const inputElement = React.useRef();
 
   React.useEffect(() => {
@@ -27,7 +28,7 @@ export default function App() {
   });
 
   // função para buscar o nome
-  async function handleClick() {
+  async function handleSearch() {
     if (input === '') {
       alert('Informe um nome');
       return;
@@ -79,8 +80,8 @@ export default function App() {
     <div className="area-search">
       <h1 className="title mt-5 mb-3">Origin of Name</h1>
       <div className="input-group containerInput">
-        <input ref={inputElement} type="text" className="form-control" placeholder="Digite seu nome" value={input} onChange={(event) => setInput(event.target.value)} />
-        <button type="button" className="bg-color buttonSearch" data-bs-toggle="tooltip" data-bs-placement="top" title="Pesquisar" onClick={handleClick}>
+        <input ref={inputElement} type="text" className="form-control" placeholder="Digite seu nome" value={input} onChange={({target}) => setInput(target.value)} />
+        <button type="button" className="bg-color buttonSearch" data-bs-toggle="tooltip" data-bs-placement="top" title="Pesquisar" onClick={handleSearch}>
           <BsSearch size={25} color="FFF" />
         </button>
       </div>
