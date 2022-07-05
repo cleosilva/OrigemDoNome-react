@@ -25,8 +25,8 @@ const Card = ({
               ))}
             </span>
             <span className="text-center d-block">
-              {dataCountry.map((country) => (
-                <p className="card-text mx-auto">
+              {dataCountry.map((country,key) => (
+                <p className="card-text mx-auto" key={key}>
                   {(country.probability.toFixed(2) * 100).toFixed(0)}%
                 </p>
               ))}
