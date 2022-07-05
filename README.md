@@ -57,4 +57,8 @@ $ npm install
 $ npm start
 
 # O servidor inciará na porta:3000 - acesse <http://localhost:3000>
+```
+
+### Deploy da aplicação na plataforma Netlify
+https://originofname.netlify.app/
 
