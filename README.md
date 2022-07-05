@@ -27,7 +27,7 @@ O projeto tem como finalidade buscar o país de origem de um nome retornando aqu
     <li>No arquivo Card.js e NavBar.js: Foi utilizado o conceito de componentização dos elementos NavBar e Card para que eles possam ser reutilizados em vários     locais da aplicação</li>
     <li>No arquivo Card.js: linha 15 foi utilizado um ternário que renderiza o card de acordo com o type. A escolha da utilização do ternário foi devido os         cards terem a mesma base de cabeçalho e corpo mudando somente o conteúdo do 'card-body'.</li>
     <li>No arquivo App.js: linha 36 foi utilizado o try catch, por se tratar de uma requisição poderá haver erros, sendo assim, o catch especifica uma resposta     caso uma exceção seja lançada</li>
-    <li>No arquivo App.js: linhas 91 e 109 foi utilizado o operador de comparação && para verificar se há dados a serem retornados, caso seja verdadeiro (true)     é renderizado o card que mostra as informações solicitadas na api, caso falso, o card é oculto.</li>
+    <li>No arquivo App.js: linhas 87 e 96 foi utilizado o operador de comparação && para verificar se há dados a serem retornados, caso seja verdadeiro (true)     é renderizado o card que mostra as informações solicitadas na api, caso falso, o card é oculto.</li>
 </ul>
 
 
