@@ -37,6 +37,10 @@ Saída: Tratamento no front end com a exibiçao de cards com o resultado do paí
 ### Versionamento
 Plataforma: Github
 
+### Demonstração da aplicação
+![originName](https://user-images.githubusercontent.com/82469705/177234579-fa575444-4df0-4629-9f31-9bcf4eb8ab83.gif)
+
+
 ### 🎲 Clonando a aplicação
 
 ```bash
@@ -53,3 +57,4 @@ $ npm install
 $ npm start
 
 # O servidor inciará na porta:3000 - acesse <http://localhost:3000>
+
