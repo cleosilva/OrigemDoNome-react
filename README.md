@@ -18,20 +18,20 @@ de origem.
 O projeto tem como finalidade buscar o país de origem de um nome retornando aquele com a maior probabilidade. Para o resultado foi utilizado a api [nationalize](https://api.nationalize.io) e um arquivo JSON com a lista dos nomes e código ISO dos países que pode ser acessado neste [link](https://gist.github.com/almost/7748738#filecountries-json). A aplicação também retorna como funcionaidade extra os três países com as maiores probabilidades.
 
 ### Requisitos Funcionais
-Entrada: Campo de Input onde será digitado o nome.<br>
-Processamento: requisição na api utilizando o end point  https://api.nationalize.io/?name={nomeUsuario} e requisição na api utilizando o end point https://countryflagsapi.com/png/${nameOfCountry.toLowerCase()}. A primeira retorna o nome do país e a probabilidade e a segunda retorna a bandeira do país de acordo com o nome obtido na resposta da api nationalize.<br>
-Saída: Tratamento no front end com a exibiçao de cards com o resultado do país com a maior probabilidade e sua bandeira. E um card extra com a lista dos três países com a maior probabilidade.
+<strong>Entrada:</strong> Campo de Input onde será digitado o nome.<br>
+<strong>Processamento:</strong> requisição na api utilizando o end point  https://api.nationalize.io/?name={nomeUsuario} e requisição na api utilizando o end point https://countryflagsapi.com/png/${nameOfCountry.toLowerCase()}. A primeira retorna o nome do país e a probabilidade e a segunda retorna a bandeira do país de acordo com o nome obtido na resposta da api nationalize.<br>
+<strong>Saída:</strong> Tratamento no front end com a exibiçao de cards com o resultado do país com a maior probabilidade e sua bandeira e um card extra com a lista dos três países com a maior probabilidade.
 
 ### Lógica e Conceitos
 <ul>
-    <li>Foi criado os componentes NavBar e Card para que eles possam ser reutilizados em vários locais da aplicação</li>
+    <li>No arquivo Card.js e NavBar.js: Foi utilizado o conceito de componentização dos elementos NavBar e Card para que eles possam ser reutilizados em vários     locais da aplicação</li>
     <li>No arquivo Card.js: linha 15 foi utilizado um ternário que renderiza o card de acordo com o type. A escolha da utilização do ternário foi devido os         cards terem a mesma base de cabeçalho e corpo mudando somente o conteúdo do 'card-body'.</li>
     <li>No arquivo App.js: linha 36 foi utilizado o try catch, por se tratar de uma requisição poderá haver erros, sendo assim, o catch especifica uma resposta     caso uma exceção seja lançada</li>
     <li>No arquivo App.js: linhas 91 e 109 foi utilizado o operador de comparação && para verificar se há dados a serem retornados, caso seja verdadeiro (true)     é renderizado o card que mostra as informações solicitadas na api, caso falso, o card é oculto.</li>
 </ul>
 
 
-### Dependencias de desenvolvimento
+### Dependencias
 <img src="https://img.shields.io/badge/npm-axios-orange"/> <img src="https://img.shields.io/badge/B-Bootstrap-yellowgreen"/> <img src="https://img.shields.io/badge/bs-react--icons-blue"/>
 
 ### Versionamento
