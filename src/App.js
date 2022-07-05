@@ -1,9 +1,9 @@
 import React from "react";
 import { BsSearch, BsHeart } from 'react-icons/bs'
 import api from './services/api';
+import Card from './components/Card';
 import "./style.css";
 
-import Card from './components/Card';
 
 export default function App() {
 

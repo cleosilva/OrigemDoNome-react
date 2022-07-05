@@ -6,7 +6,7 @@ const NavBar = () => {
     <nav className="navbar navbar-dark bg-dark bg-color">
       <a className="navbar-brand" href="/">
         <h3 className="mx-4" id="logo">
-          Origin<span>OfName</span>
+          OriginOfName
         </h3>
       </a>
       <div className="navbar-brand icons">
@@ -16,7 +16,6 @@ const NavBar = () => {
           target="_blank"
           rel="noreferrer"
         >
-          {' '}
           <BsGithub size={25} color="FFF" />
         </a>
         <a
