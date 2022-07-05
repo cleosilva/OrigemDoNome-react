@@ -84,7 +84,6 @@ export default function App() {
       <p className="footer text-muted small">Created with <BsHeart /> by Cléo Silva</p>
 
       <div className="card-group">
-        {console.log('FINAL', countryData)}
         {Object.keys(data).length > 0 && ( // Verifica se há dados para serem mostrados
           <Card
             title={`Nome: ${data.name}`}
