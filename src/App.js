@@ -3,19 +3,20 @@ import { BsSearch, BsHeart } from 'react-icons/bs'
 import api from './services/api';
 import "./style.css";
 
+import Card from './components/Card';
+
 export default function App() {
+
   // encapsulamento de variáveis
   const [input, setInput] = React.useState('');
-  const [data, setData] = React.useState({});
-  const [nameCountry, setNameCountry] = React.useState('');
-  const [probabilityCountry, setProbabilityCountry] = React.useState('');
-  const [flagCountry, setFlagCountry] = React.useState('');
-  const [percentCountry, setPercentCountry] = React.useState('');
-  const [countries, setCountries] = React.useState([]);
-  const [valid, setValid] = React.useState({});
-  const [nameCountries, setNameCountries] = React.useState([]);
-
   const inputElement = React.useRef();
+
+  const [data, setData] = React.useState({});
+  const [countryData, setCountryData] = React.useState({})
+
+  const [countries, setCountries] = React.useState([]);
+  const [nameCountries, setNameCountries] = React.useState([]);
+  const [valid, setValid] = React.useState({});
 
   React.useEffect(() => {
     fetch('./countries.json', {
@@ -24,9 +25,8 @@ export default function App() {
       }
     }).then((res) => res.json())
       .then(res => setCountries(res))
-
-  });
-
+  }, []);
+  
   // função para buscar o nome
   async function handleSearch() {
     if (input === '') {
@@ -37,22 +37,18 @@ export default function App() {
       const responseApi = await api.get(`?name=${input}`);
       setData(responseApi.data)
       // variáveis dos países com maior probabilidade
-      const nameOfCountry = responseApi.data.country[0].country_id;
-      const probability = responseApi.data.country[0].probability;
-      const flag = `https://countryflagsapi.com/png/${nameOfCountry.toLowerCase()}`;
-      const percent = probability.toFixed(2) * 100;
-
-      setPercentCountry(percent);
-      setFlagCountry(flag);
-      setProbabilityCountry(probability)
+      const nameCountryApi = responseApi.data.country[0].country_id;
 
       for (let country of countries.countries) {
-        if (nameOfCountry === country.code) {
-          setNameCountry(country.name);
+        if (nameCountryApi === country.code) {
+          setCountryData({
+            nameOfCountry: country.name,
+            probability: responseApi.data.country[0].probability.toFixed(2) * 100,
+            flag: `https://countryflagsapi.com/png/${nameCountryApi.toLowerCase()}`
+          })
         }
       }
-      setInput(''); // limpa o input
-
+      setInput('');
     } catch (err) {
       console.log('err', err)
       setInput('');
@@ -80,48 +76,31 @@ export default function App() {
     <div className="area-search">
       <h1 className="title mt-5 mb-3">Origin of Name</h1>
       <div className="input-group containerInput">
-        <input ref={inputElement} type="text" className="form-control" placeholder="Digite seu nome" value={input} onChange={({target}) => setInput(target.value)} />
+        <input ref={inputElement} type="text" className="form-control" placeholder="Digite seu nome" value={input} onChange={({ target }) => setInput(target.value)} />
         <button type="button" className="bg-color buttonSearch" data-bs-toggle="tooltip" data-bs-placement="top" title="Pesquisar" onClick={handleSearch}>
           <BsSearch size={25} color="FFF" />
         </button>
       </div>
       <p className="footer text-muted small">Created with <BsHeart /> by Cléo Silva</p>
 
-      <div class="card-group">
+      <div className="card-group">
+        {console.log('FINAL', countryData)}
         {Object.keys(data).length > 0 && ( // Verifica se há dados para serem mostrados
-          <div className='main m-4'>
-            <div className="card shadow-lg bg-card">
-              <h5 className="card-header text-center bg-header">Nome: {data.name}</h5>
-              <div className="card-body p-4">
-                <h5 className="card-title">Maior probablidade de origem: <p className='text-center mt-2 mb-0 text-uppercase text-success'>{nameCountry}</p></h5>
-                <div className='mb-4 d-flex justify-content-center'>
-                  <img src={`${flagCountry}`} width="35" alt="flag" />
-                </div>
-                <p className="card-text text-center ">A probabilidade é de <span className='fw-bold'>{percentCountry.toFixed(0)}% </span></p>
-                <div className=' d-flex justify-content-center'>
-                  <button className="btn-fancy" data-bs-toggle="tooltip" data-bs-placement="top" title="3 países mais prováveis"
-                    onClick={listCountries}><span>Outros países de origem</span></button>
-                </div>
-              </div>
-            </div>
-          </div>
+          <Card
+            title={`Nome: ${data.name}`}
+            nameCountry={countryData.nameOfCountry}
+            probability={countryData.probability.toFixed(0)}
+            flagCountry={countryData.flag}
+            PressButon={listCountries}
+          />
         )}
         {Object.keys(valid).length > 0 && (
-          <div className="card shadow-lg m-4 bg-card">
-            <h5 className="card-header text-uppercase bg-header">Países de origem:</h5>
-            <div className="card-body countries gap-5 d-flex">
-              <span className='text-center d-block'>
-                {nameCountries.map((country, key) => (
-                  <p className='d-flex text-uppercase' key={key}>{country}</p>
-                ))}
-              </span>
-              <span className='text-center d-block'>
-                {data.country.map(e => (
-                  <p className="card-text mx-auto">{(e.probability.toFixed(2) * 100).toFixed(0)}% </p>
-                ))}
-              </span>
-            </div>
-          </div>
+          <Card
+            typeCard='listCountriesCard'
+            title='PAÍSES DE ORIGEM:'
+            listNameContries={nameCountries}
+            dataCountry={data.country}
+          />
         )}
       </div>
     </div>
